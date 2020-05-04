@@ -9,6 +9,7 @@ def count_words(filename):
         words = line.rstrip().split(" ")
 
         for word in words:
+            word = word.lower().strip(",").strip(".").strip("?")
             counter[word] = counter.get(word, 0) + 1
 
     return counter
