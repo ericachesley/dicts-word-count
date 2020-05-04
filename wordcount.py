@@ -16,10 +16,18 @@ def count_words(filename):
     return counter
 
 def strip_punctuation(word):
-    #puncts = ['.', ',']
     for punct in string.punctuation:
         word = word.strip(punct)
     return word
 
+counted = count_words(sys.argv[1])
+sorted_keys = sorted(counted)
+for key in sorted_keys:
+    print(key, counted[key])
+
+    """
+
 for word, quantity in count_words(sys.argv[1]).items():
     print(word, quantity)
+
+    """
