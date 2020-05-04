@@ -1,4 +1,6 @@
 # put your code here.
+import sys
+
 def count_words(filename):
     active_file = open(filename)
     counter = {}
@@ -11,5 +13,5 @@ def count_words(filename):
 
     return counter
 
-for word, quantity in count_words('test.txt').items():
+for word, quantity in count_words(sys.argv[1]).items():
     print(word, quantity)
