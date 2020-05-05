@@ -3,6 +3,7 @@ import sys
 import string
 
 def count_words(filename):
+    
     active_file = open(filename)
     counter = {}
 
@@ -16,6 +17,7 @@ def count_words(filename):
     return counter
 
 def reverse_dictionary(dictionary):
+    
     reverse = {}
 
     for key, value in dictionary.items():
@@ -27,13 +29,15 @@ def reverse_dictionary(dictionary):
 
 
 counted = count_words(sys.argv[1])
-del (counted[""])
+if '' in counted:
+    del (counted[""])
 
 reverse_counted = reverse_dictionary(counted)
 sorted_quantities = sorted(reverse_counted)[::-1]
 
 for quantity in sorted_quantities:
-    print(quantity, reverse_counted[quantity])
+    for word in sorted(reverse_counted[quantity]):
+        print(word, quantity)
 
 
 """
