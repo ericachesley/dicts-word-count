@@ -10,24 +10,35 @@ def count_words(filename):
         words = line.rstrip().split(" ")
 
         for word in words:
-            word = strip_punctuation(word.lower())
+            word = word.lower().strip(string.punctuation)
             counter[word] = counter.get(word, 0) + 1
 
     return counter
 
-def strip_punctuation(word):
-    for punct in string.punctuation:
-        word = word.strip(punct)
-    return word
+def reverse_dictionary(dictionary):
+    reverse = {}
+
+    for key, value in dictionary.items():
+        new_values = reverse.get(value, [])
+        new_values.append(key)
+        reverse[value] = new_values
+
+    return reverse
+
 
 counted = count_words(sys.argv[1])
-sorted_keys = sorted(counted)
-for key in sorted_keys:
-    print(key, counted[key])
+del (counted[""])
 
-    """
+reverse_counted = reverse_dictionary(counted)
+sorted_quantities = sorted(reverse_counted)[::-1]
 
-for word, quantity in count_words(sys.argv[1]).items():
+for quantity in sorted_quantities:
+    print(quantity, reverse_counted[quantity])
+
+
+"""
+for word, quantity in counted.items():
     print(word, quantity)
+"""
 
-    """
+
